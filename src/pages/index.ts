@@ -1,1 +1,1 @@
-export * from './pod';
+export * from './landing-page-pod';

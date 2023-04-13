@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Alliance No 1.';
+  src: url('fonts/AllianceNo1-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Alliance No 1. Bold';
+  src: url('fonts/AllianceNo1-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Tusker Grotesk';
+  src: url('fonts/TuskerGrotesk-4500Medium.woff') format('woff');
+}
+
+html,
+body {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0px;
+  background-color: #090719;
+  color: #ffffff;
+}
