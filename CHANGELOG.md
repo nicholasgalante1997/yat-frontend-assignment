@@ -1,5 +1,15 @@
 # Changes by SemVer
 
+## 1.0.2  
+
+- Added component views
+- Added component file structure
+- Set up sb 7.0
+- Set Up Navbar
+- Set Up Collection title & Subtext
+- Set up Stat Tiles
+- Set up loading skeleton for app (needs tweaking)
+
 ## 1.0.1  
 
 - Added [prettier](https://www.npmjs.com/package/prettier) for code formatting

@@ -32,4 +32,9 @@ export const MinimalNavButton = styled.button`
   border-radius: 36px;
   border: none;
   background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 0px 19.2px rgba(255, 255, 255, 0.75), 0px 0px 19.2px #523df1;
+  }
 `;

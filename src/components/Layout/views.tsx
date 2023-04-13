@@ -9,7 +9,7 @@ export const LayoutView = styled.div`
 
   min-height: 100vh;
   min-width: 100%;
-  max-width: 1024px;
+  max-width: 1224px;
 
   overflow-x: hidden;
   overflow-y: scroll;

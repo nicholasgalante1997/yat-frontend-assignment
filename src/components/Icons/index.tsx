@@ -87,9 +87,25 @@ const SVG_MAP: Record<IconProps['type'], JSX.Element> = {
       />
     </svg>
   ),
+  ethereum: (
+    <svg
+      width="8"
+      height="12"
+      viewBox="0 0 8 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0.25 6L4 8.25V4.5L0.25 6Z" fill="#EEEEEE" />
+      <path d="M4 8.25L7.75 6L4 4.5V8.25Z" fill="#CDCDCD" />
+      <path d="M7.75 6L4 0V4.5L7.75 6Z" fill="#EEEEEE" />
+      <path d="M4 0L0.25 6L4 4.5V0Z" fill="white" />
+      <path d="M0.25 6.75L4 12V9L0.25 6.75Z" fill="white" />
+      <path d="M4 12L7.75 6.75L4 9V12Z" fill="#EEEEEE" />
+    </svg>
+  ),
 } as const;
 
-type IconProps = { type: 'home' | 'user' | 'smile' | 'diamond' };
+type IconProps = { type: 'home' | 'user' | 'smile' | 'diamond' | 'ethereum' };
 
 export const Icon = React.memo(function IconComponent({ type }: IconProps) {
   return SVG_MAP[type];

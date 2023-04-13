@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
-import { Layout, MinimalNav, AppLoading, HeadingBar } from '../../components';
+import {
+  Layout,
+  MinimalNav,
+  AppLoading,
+  HeadingBar,
+  CardGrid,
+} from '../../components';
 import { useQueryCollections } from '../../query-fns';
-import { logger } from '../../utils';
 import { StatTileProps } from '../../components/StatTile';
 
 function PodLandingPage() {
@@ -53,6 +58,7 @@ function PodLandingPage() {
             title={data?.name ?? ''}
             description={data?.description ?? ''}
           />
+          <CardGrid cards={data?.tokens ?? []} />
         </React.Fragment>
       )}
     </Layout>
