@@ -3,6 +3,7 @@
 ## TLDR
 
 > Getting Started
+> `yarn start` makes use of the linux `cp` shell command to move static artifacts, if you're running this on Windows and not on WSL, you'll likely need to amend the `cp:assets` script to use the native Windows `copy` or you'll notice static assets missing.
 
 ```bash
 # or yarn install
