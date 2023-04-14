@@ -8,6 +8,16 @@ export const CardGridUtilBarWrapper = styled.div`
   padding: 0px;
   margin-top: 36px;
   margin-bottom: 36px;
+
+  @media screen and (min-width: 596px) and (max-width: 900px) {
+    width: 100%;
+    max-width: 860px;
+  }
+
+  @media screen and (max-width: 595px) {
+    width: 100%;
+    max-width: 305px;
+  }
 `;
 
 export const Grouping = styled.div`
@@ -15,6 +25,18 @@ export const Grouping = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+
+  @media screen and (min-width: 596px) and (max-width: 900px) {
+    width: 100%;
+    max-width: 860px;
+    margin-top: 12px;
+  }
+
+  @media screen and (max-width: 595px) {
+    width: 100%;
+    max-width: 305px;
+    margin-top: 12px;
+  }
 `;
 
 export const CardGridRow = styled.div`
@@ -26,6 +48,21 @@ export const CardGridRow = styled.div`
   padding: 0px;
   margin: 0px;
   margin-top: 16px;
+
+  @media screen and (min-width: 596px) and (max-width: 900px) {
+    width: 100%;
+    max-width: 860px;
+    flex-direction: column;
+    margin-top: 12px;
+  }
+
+  @media screen and (max-width: 595px) {
+    width: 100%;
+    max-width: 305px;
+    flex-direction: column;
+    margin-top: 12px;
+    min-height: 115px;
+  }
 `;
 
 export const CollectionTitle = styled.h1`

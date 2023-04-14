@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '../Icons';
-import { Input, InputProps } from '../Input';
+import { Input } from '../Input';
 import {
   CardGridRow,
   CardGridUtilBarWrapper,

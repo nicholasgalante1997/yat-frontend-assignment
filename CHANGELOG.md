@@ -1,5 +1,10 @@
 # Changes by SemVer
 
+## 1.0.3  
+
+- Added Tablet layout with iPad v8/9 as emulator
+- Added Mobile layout with Iphone 13 Pro as emulator
+
 ## 1.0.2  
 
 - Added component views
