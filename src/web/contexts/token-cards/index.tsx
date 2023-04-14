@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 import isEqual from 'lodash.isequal';
+import debounce from 'lodash.debounce';
 import { Token } from '../../types';
-import { debounce } from '../../utils';
 
 // manage token card info here after pulled from react-query
 // accept Token[] as a prop
