@@ -1,10 +1,6 @@
 import React from 'react';
 import { Icon } from '../Icons';
-import {
-  MinimalNavParentContainer,
-  MinimalNavButton,
-  MinimalNavChildContainer,
-} from './views';
+import { MinimalNavParentContainer, MinimalNavButton, MinimalNavChildContainer } from './views';
 
 const ICONS = ['home', 'user', 'smile', 'diamond'] as const;
 

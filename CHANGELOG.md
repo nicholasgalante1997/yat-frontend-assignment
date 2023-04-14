@@ -1,5 +1,22 @@
 # Changes by SemVer
 
+## 1.0.4
+
+- Migrated off create-react-app
+- Migrated onto a custom webpack/babel impl
+- set up basic express/http server
+  - why did I choose to wrap express in http.createServer()?
+  - Its a pretty easy plug and drop for when we want to start issuing certificates and moving to https
+- set up some trace middleware fns
+- installed cors (needed it for cors)
+- set up babel-plugin-styled-components for ssr [@see](https://styled-components.com/docs/advanced#server-side-rendering)
+- set up server-render.tsx
+  - just a light abstraction over the ReactDOM/server renderToString api. If we were prepping static pages I wouldve probably just resolved the component to a pipeable stream so we could just pipe that stream into a fs write stream and start scaffolding html files. But since we server prep every time the handler gets hit, we render to string here and pipe that string through res.
+- Set up a pageHandler for '/' route
+- Migrated react-query to an ssr node implementation (I know were on v3 but the docs point to v4 for some reason) [docs](https://tanstack.com/query/v4/docs/react/guides/ssr#server)
+- Migrated MSW to a node implementation
+- 
+
 ## 1.0.3  
 
 - Added Tablet layout with iPad v8/9 as emulator

@@ -10,16 +10,12 @@ export async function fetchCollection(): Promise<Pod | null> {
     logger.log(OP_BEGIN_LOGLINE);
 
     const isBrowser = typeof window !== 'undefined';
-    const url = isBrowser
-      ? 'http://localhost:3000/api/proxy/msw'
-      : 'http://mock-server/collection/test';
+    const url = isBrowser ? 'http://localhost:3000/api/proxy/msw' : 'http://mock-server/collection/test';
 
     const { data, status, statusText } = await net.get<{ pod: Pod }>(url);
 
     if (status < 200 || status > 299) {
-      logger.error(
-        `StatusCodeException: Status Code is ${status}.\n${statusText}`
-      );
+      logger.error(`StatusCodeException: Status Code is ${status}.\n${statusText}`);
       throw new Error(
         'Invalid Status Code Exception: Status Code on `fetchCollections` response indicates the response resulted in a likely failure. Please check logs.'
       );

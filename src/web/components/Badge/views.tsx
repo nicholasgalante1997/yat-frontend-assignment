@@ -9,8 +9,7 @@ export const Badge = styled.span<{ active?: boolean }>`
   gap: 6px;
   min-width: 75px;
   height: 40px;
-  background: ${(props) =>
-    props.active ? '#523DF1' : 'rgba(255, 255, 255, 0.05)'};
+  background: ${(props) => (props.active ? '#523DF1' : 'rgba(255, 255, 255, 0.05)')};
   border-radius: 100px;
   font-family: 'Alliance No 1.';
   font-style: normal;

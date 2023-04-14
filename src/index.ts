@@ -5,7 +5,7 @@ import { logger } from './web/utils';
 const PORT = process.env.PORT || (3000 as const);
 
 mockDataServer.listen({
-  onUnhandledRequest: 'bypass'
+  onUnhandledRequest: 'bypass',
 });
 
 process.on('exit', (code) => {

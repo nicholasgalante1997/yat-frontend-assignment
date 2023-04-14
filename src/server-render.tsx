@@ -30,10 +30,7 @@ export type EmbedOptions = {
   };
 };
 
-export function prerender(
-  Component: React.ComponentType<any>,
-  options: EmbedOptions
-) {
+export function prerender(Component: React.ComponentType<any>, options: EmbedOptions) {
   let html: string;
   let pageString: string;
   let error: Error | undefined;
@@ -42,10 +39,7 @@ export function prerender(
 
   try {
     logger.log('retrieving html template...');
-    html = fs.readFileSync(
-      path.resolve(process.cwd(), 'html', 'prod.template.html'),
-      { encoding: 'utf-8' }
-    );
+    html = fs.readFileSync(path.resolve(process.cwd(), 'html', 'prod.template.html'), { encoding: 'utf-8' });
     logger.log('Dehydrating styled-components on server...');
     pageString = renderToString(
       sheet.collectStyles(
@@ -78,9 +72,7 @@ export function prerender(
   }
 
   if (options.props && Object.keys(options.props).length > 0) {
-    const componentStateElement = `<div id="component-state-mount">${JSON.stringify(
-      { props: options.props }
-    )}</div>`;
+    const componentStateElement = `<div id="component-state-mount">${JSON.stringify({ props: options.props })}</div>`;
     html = html.replace('<!-- __data_state_mount__ -->', componentStateElement);
   } else {
     html = html.replace('<!-- __data_state_mount__ -->', '');
@@ -89,16 +81,10 @@ export function prerender(
   const reactQueryScriptTag = `<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(
     options.queryConfig.dehydratedState
   )};</script>`;
-  html = html.replace(
-    '<!-- __react_query_script_mount__ -->',
-    reactQueryScriptTag
-  );
+  html = html.replace('<!-- __react_query_script_mount__ -->', reactQueryScriptTag);
 
   const scriptTag = `<script src="/${options.bundleName}.bundle.js" defer></script>`;
   html = html.replace('<!-- __client_js_mount__ -->', scriptTag);
 
-  return html.replace(
-    '<div id="production-root"></div>',
-    `<div id="production-root">${pageString}</div>`
-  );
+  return html.replace('<div id="production-root"></div>', `<div id="production-root">${pageString}</div>`);
 }

@@ -1,12 +1,5 @@
-import React, {
-  createContext,
-  memo,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, memo, useContext, useEffect, useState } from 'react';
 import isEqual from 'lodash.isequal';
-import debounce from 'lodash.debounce';
 import { Token } from '../../types';
 
 // manage token card info here after pulled from react-query
@@ -51,20 +44,15 @@ const defaults: TokenCardContext = {
 
 const TokenCardContext = createContext<TokenCardContext>(defaults);
 
-export const useGetVisibleTokensCtx = () =>
-  useContext(TokenCardContext).mutVisibleTokenItems;
+export const useGetVisibleTokensCtx = () => useContext(TokenCardContext).mutVisibleTokenItems;
 
-export const useGetTokensCtxSearchTerm = () =>
-  useContext(TokenCardContext).searchTerm;
-export const useGetTokensCtxFilterOnOwned = () =>
-  useContext(TokenCardContext).ownedTokensOnly;
-export const useGetTokensCtxSortCrit = () =>
-  useContext(TokenCardContext).sortBy;
+export const useGetTokensCtxSearchTerm = () => useContext(TokenCardContext).searchTerm;
+export const useGetTokensCtxFilterOnOwned = () => useContext(TokenCardContext).ownedTokensOnly;
+export const useGetTokensCtxSortCrit = () => useContext(TokenCardContext).sortBy;
 export const useGetTokensCtxSortDir = () => useContext(TokenCardContext).sort;
 
 export const useTokensCtxMutation = () => {
-  const { mutateOwnedTokensOnly, mutateSearchTerm, mutateSort, mutateSortBy } =
-    useContext(TokenCardContext);
+  const { mutateOwnedTokensOnly, mutateSearchTerm, mutateSort, mutateSortBy } = useContext(TokenCardContext);
   return {
     mutateOwnedTokensOnly,
     mutateSearchTerm,
@@ -91,50 +79,37 @@ export const MemoizedTokenCardContextProvider = memo(function ({
   initialSortDir = 'ascending',
 }: TokenCardContextProviderProps) {
   const [allTokensNonMut, setAllTokensNonMut] = useState<Token[]>(tokens);
-  const [searchTerm, setSearchTerm] = useState<string | undefined>(
-    initialSearchTerm
-  );
-  const [sortDir, setSortDir] = React.useState<
-    'ascending' | 'descending' | undefined
-  >(initialSortDir);
-  const [sortBy, setSortBy] = React.useState<'price' | 'recency' | undefined>(
-    initialSortByCrit
-  );
-  const [ownedTokensOnly, setOwnedTokensOwnly] = React.useState<
-    boolean | undefined
-  >(initialOwnedTokensOnly);
-  const [visibleTokens, setVisibleTokens] = useState<Token[]>(
-    getVisibleTokens()
-  );
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(initialSearchTerm);
+  const [sortDir, setSortDir] = React.useState<'ascending' | 'descending' | undefined>(initialSortDir);
+  const [sortBy, setSortBy] = React.useState<'price' | 'recency' | undefined>(initialSortByCrit);
+  const [ownedTokensOnly, setOwnedTokensOwnly] = React.useState<boolean | undefined>(initialOwnedTokensOnly);
+  const [visibleTokens, setVisibleTokens] = useState<Token[]>(getVisibleTokens());
 
   function getVisibleTokens(): Token[] {
     /** filter fn */
     function filterOnSearchTermOrOwnershipCrit() {
       return allTokensNonMut.filter((tokenItem) => {
-        const { asset, collection, owner, transaction } = tokenItem;
+        const { asset, owner, collection } = tokenItem;
 
         // conditions
         const hasOwnedTokensFilter = !!ownedTokensOnly;
         const hasSearchCriteria = !!searchTerm && searchTerm !== '';
 
         if (hasOwnedTokensFilter && hasSearchCriteria) {
-          return !!owner.twitter && asset.id.toString().includes(searchTerm);
+          return !!owner.twitter && (asset.id.toString().includes(searchTerm) || owner.twitter.includes(searchTerm) || collection.name.includes(searchTerm));
         }
         if (hasOwnedTokensFilter) {
           return !!owner.twitter;
         }
         if (hasSearchCriteria) {
-          return asset.id.toString().includes(searchTerm);
+          return (asset.id.toString().includes(searchTerm)  || owner.twitter.includes(searchTerm) || collection.name.includes(searchTerm));
         }
         return true;
       });
     }
 
     // util for ease of comparison
-    function comparator(
-      a: number | string | Date,
-      b: number | string | Date
-    ): 1 | -1 | 0 {
+    function comparator(a: number | string | Date, b: number | string | Date): 1 | -1 | 0 {
       if (a === b) return 0;
       if (a < b) return -1;
       if (a > b) return 1;
@@ -143,34 +118,24 @@ export const MemoizedTokenCardContextProvider = memo(function ({
 
     // sort comparator
     function sort(a: Token, b: Token) {
-      if (sortDir === 'ascending') {
-        if (sortBy === 'price') {
-          return comparator(a.transaction.amount, b.transaction.amount);
-        } else {
-          return comparator(
-            new Date(a.transaction.date),
-            new Date(b.transaction.date)
-          );
-        }
-      } else {
-        if (sortBy === 'price') {
-          return comparator(b.transaction.amount, a.transaction.amount);
-        } else {
-          return comparator(
-            new Date(b.transaction.date),
-            new Date(a.transaction.date)
-          );
-        }
-      }
+      // We always sort ascending and if descending is selected we just reverse it
+      return sortBy === 'price'
+        ? comparator(a.transaction.amount, b.transaction.amount)
+        : comparator(
+          parseInt(new Date(a.transaction.date).toUTCString()),
+          parseInt(new Date(b.transaction.date).toUTCString())
+        );
     }
 
-    return filterOnSearchTermOrOwnershipCrit().sort(sort);
+    return sortDir === 'ascending'
+      ? filterOnSearchTermOrOwnershipCrit().sort(sort)
+      : filterOnSearchTermOrOwnershipCrit().sort(sort).reverse();
   }
 
   const memoizedUpdateVisibleTokens = React.useCallback(
-    debounce(function () {
+    function () {
       setVisibleTokens(getVisibleTokens());
-    }, 100),
+    },
     [searchTerm, sortBy, sortDir, ownedTokensOnly]
   );
 
@@ -184,9 +149,7 @@ export const MemoizedTokenCardContextProvider = memo(function ({
     }
   }, [tokens]);
 
-  function mutateSearchTerm(
-    inputChangeEvent: React.ChangeEvent<HTMLInputElement>
-  ) {
+  function mutateSearchTerm(inputChangeEvent: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(inputChangeEvent.target.value);
   }
 
@@ -215,9 +178,5 @@ export const MemoizedTokenCardContextProvider = memo(function ({
     sortBy,
   };
 
-  return (
-    <TokenCardContext.Provider value={localStateManagedContextValues}>
-      {children}
-    </TokenCardContext.Provider>
-  );
+  return <TokenCardContext.Provider value={localStateManagedContextValues}>{children}</TokenCardContext.Provider>;
 });

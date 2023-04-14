@@ -16,18 +16,11 @@ type HeadingBarProps = {
   statTiles: StatTileProps[];
 };
 
-export const HeadingBar = React.memo(function ({
-  description,
-  title,
-  statTiles,
-}: HeadingBarProps) {
+export const HeadingBar = React.memo(function ({ description, title, statTiles }: HeadingBarProps) {
   return (
     <HeadingBarParentContainer>
       <HeadingBarImageTitleContainer>
-        <HeadingBarImage
-          src="collection_hero.png"
-          alt="A cartoon woman singing"
-        />
+        <HeadingBarImage src="collection_hero.png" alt="A cartoon woman singing" />
         <HeadingTitleContainer>
           <Title>{title}</Title>
           <Text>{description}</Text>

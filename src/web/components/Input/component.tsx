@@ -22,11 +22,7 @@ export const Input = memo(function (props: InputProps) {
   return (
     <StyledInputContainer>
       {props.withSearchIcon && <SearchIcon type="search" />}
-      <StyledInput
-        value={inputState}
-        onChange={onChange}
-        placeholder={props.placeholder}
-      />
+      <StyledInput value={inputState} onChange={onChange} placeholder={props.placeholder} />
     </StyledInputContainer>
   );
 });

@@ -55,11 +55,7 @@ export const CardAssetInfoContainer = styled.div`
   isolation: isolate;
   width: 336.25px;
   height: 84px;
-  background: radial-gradient(
-    113.75% 307.5% at 36.25% 32.5%,
-    #1d1b2b 0%,
-    #090719 100%
-  );
+  background: radial-gradient(113.75% 307.5% at 36.25% 32.5%, #1d1b2b 0%, #090719 100%);
 `;
 
 export const AssetID = styled.h4`
@@ -104,14 +100,9 @@ export const TransactionBadge = styled.div`
   bottom: 30%;
   width: 90px;
   height: 28px;
-  background: radial-gradient(
-      102.5% 1778.81% at 102.93% 143.75%,
-      #000000 0%,
-      #31b3b3 100%
-    )
+  background: radial-gradient(102.5% 1778.81% at 102.93% 143.75%, #000000 0%, #31b3b3 100%)
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    0px 0px 20.4345px rgba(61, 241, 165, 0.35),
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 20.4345px rgba(61, 241, 165, 0.35),
     inset 0px 0px 25.5431px rgba(67, 197, 119, 0.6);
   border-radius: 8px;
   z-index: 2;
@@ -138,11 +129,7 @@ export const OwnerBar = styled.div`
   width: 336.25px;
   height: 64px;
 
-  background: radial-gradient(
-    39.62% 142.82% at 67.14% 50.58%,
-    #3a3367 0%,
-    #181629 100%
-  );
+  background: radial-gradient(39.62% 142.82% at 67.14% 50.58%, #3a3367 0%, #181629 100%);
 `;
 
 export const YatUserBadge = styled.div<{ padTwitterHandle?: boolean }>`
@@ -168,11 +155,7 @@ export const YatBadge = styled.div`
   gap: 2px;
   height: 32px;
 
-  background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
     linear-gradient(180deg, #232131 0%, #0d0b0e 100%);
   background-blend-mode: soft-light, normal;
   border-radius: 50px;
@@ -185,12 +168,7 @@ export const TwitterHandle = styled.span`
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.3px;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    #1d9bf0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), #1d9bf0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -5,12 +5,10 @@ import App from '../App';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 
-type EnhancedWindow = typeof window &
-  typeof globalThis & { __REACT_QUERY_STATE__: string };
+type EnhancedWindow = typeof window & typeof globalThis & { __REACT_QUERY_STATE__: string };
 
 function mountApp() {
-  const dehydratedState =
-    window && (window as EnhancedWindow).__REACT_QUERY_STATE__;
+  const dehydratedState = window && (window as EnhancedWindow).__REACT_QUERY_STATE__;
   const queryClient = new QueryClient();
   hydrateRoot(
     document.getElementById('production-root')!,

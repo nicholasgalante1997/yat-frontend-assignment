@@ -8,9 +8,7 @@ export function randomPick(list: unknown[]) {
 }
 
 export function randomIsoDate(start: Date, end: Date) {
-  const randomDate = new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  );
+  const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   return randomDate.toISOString();
 }
 

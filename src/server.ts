@@ -20,9 +20,7 @@ expressApp.use(express.static(path.resolve(process.cwd(), 'build', 'static')));
 expressApp.get('/', pageHandler);
 expressApp.get('/api/proxy/msw', async function (req, res) {
   try {
-    const { data, status, statusText } = await axios.get<{ pod: Pod }>(
-      'http://mock-server/collection/test'
-    );
+    const { data, status, statusText } = await axios.get<{ pod: Pod }>('http://mock-server/collection/test');
     if (status < 200 || status > 299) {
       throw new Error('Invalid Status Code Exception\n' + statusText);
     }

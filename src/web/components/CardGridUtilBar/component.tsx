@@ -1,12 +1,7 @@
 import React from 'react';
 import { Icon } from '../Icons';
 import { Input } from '../Input';
-import {
-  CardGridRow,
-  CardGridUtilBarWrapper,
-  CollectionTitle,
-  Grouping,
-} from './view';
+import { CardGridRow, CardGridUtilBarWrapper, CollectionTitle, Grouping } from './view';
 import {
   useBannerCtx,
   useGetTokensCtxFilterOnOwned,
@@ -21,17 +16,14 @@ type CardGridUtilBarProps = {
   collection: { name: string };
 };
 
-export const CardGridUtilBar = React.memo(function (
-  props: CardGridUtilBarProps
-) {
+export const CardGridUtilBar = React.memo(function (props: CardGridUtilBarProps) {
   const {
     collection: { name },
   } = props;
   const searchTerm = useGetTokensCtxSearchTerm();
   const sortBy = useGetTokensCtxSortCrit();
   const filterOnOwnedTokens = useGetTokensCtxFilterOnOwned();
-  const { mutateSearchTerm, mutateSortBy, mutateOwnedTokensOnly } =
-    useTokensCtxMutation();
+  const { mutateSearchTerm, mutateSortBy, mutateOwnedTokensOnly } = useTokensCtxMutation();
   const { dispatchBanner } = useBannerCtx();
 
   function toggleOtherFiltersPrecursor() {
@@ -45,40 +37,23 @@ export const CardGridUtilBar = React.memo(function (
     <CardGridUtilBarWrapper>
       <CardGridRow>
         <CollectionTitle>{name}</CollectionTitle>
-        <Input
-          withSearchIcon
-          value={searchTerm}
-          placeholder="Search Tokens/Pods"
-          suppliedOnChange={mutateSearchTerm}
-        />
+        <Input withSearchIcon value={searchTerm} placeholder="'8976' or 'TokenStars'..." suppliedOnChange={mutateSearchTerm} />
       </CardGridRow>
       <CardGridRow>
         <Grouping>
           <SortToggle />
-          <Badge
-            active={sortBy === 'recency'}
-            onClick={() => mutateSortBy('recency')}
-          >
+          <Badge active={sortBy === 'recency'} onClick={() => mutateSortBy('recency')}>
             Recency
           </Badge>
-          <Badge
-            active={sortBy === 'price'}
-            onClick={() => mutateSortBy('price')}
-          >
+          <Badge active={sortBy === 'price'} onClick={() => mutateSortBy('price')}>
             Price
           </Badge>
         </Grouping>
         <Grouping>
-          <Badge
-            active={!!filterOnOwnedTokens}
-            onClick={() => mutateOwnedTokensOnly(true)}
-          >
+          <Badge active={!!filterOnOwnedTokens} onClick={() => mutateOwnedTokensOnly(true)}>
             Owned
           </Badge>
-          <Badge
-            active={!filterOnOwnedTokens}
-            onClick={() => mutateOwnedTokensOnly(false)}
-          >
+          <Badge active={!filterOnOwnedTokens} onClick={() => mutateOwnedTokensOnly(false)}>
             All
           </Badge>
           <Badge active={true} onClick={() => toggleOtherFiltersPrecursor()}>

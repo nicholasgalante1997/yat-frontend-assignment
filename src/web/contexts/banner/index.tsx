@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from 'react';
+import React, { memo, createContext, useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const FixedBannerBar = styled.div`
@@ -51,18 +45,12 @@ const BannerContext = createContext<BannerContextType>({
 
 export const useBannerCtx = () => useContext(BannerContext);
 
-export const MemoizedBannerContextProvider = memo(function ({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const MemoizedBannerContextProvider = memo(function ({ children }: { children: React.ReactNode }) {
   const [banners, setBanners] = useState<BannerConfig[]>([]);
 
   function autocloseBanner(bannerId: string) {
     if (banners.find((bannerIterConfig) => bannerIterConfig.id === bannerId)) {
-      setBanners((existingBanners) =>
-        existingBanners.filter((banner) => banner.id !== bannerId)
-      );
+      setBanners((existingBanners) => existingBanners.filter((banner) => banner.id !== bannerId));
     }
   }
 
@@ -74,9 +62,7 @@ export const MemoizedBannerContextProvider = memo(function ({
 
   function dispatchBanner(bannerConfig: BannerConfig) {
     const { id } = bannerConfig;
-    const bannerExists = banners.find(
-      (bannerIterConfig) => bannerIterConfig.id === id
-    );
+    const bannerExists = banners.find((bannerIterConfig) => bannerIterConfig.id === id);
     if (bannerExists) return;
     setBanners((existingBanners) => [...existingBanners, bannerConfig]);
   }

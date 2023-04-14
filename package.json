@@ -1,6 +1,6 @@
 {
   "name": "fe-assignment",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "build:client": "webpack --config configuration/webpack.client.js && yarn cp:assets",
-    "cp:assets": "cp -R src/web/styles/* public/collection_hero.png build/static/",
+    "cp:assets": "cp -R src/web/styles/* public/collection_hero.png public/favicon.ico public/robots.txt build/static/",
     "fmt": "prettier --write src/",
     "lint": "eslint --fix src/",
     "storybook": "storybook dev -p 6006",

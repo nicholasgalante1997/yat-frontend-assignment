@@ -1,17 +1,7 @@
 import React, { useEffect } from 'react';
-import {
-  Layout,
-  MinimalNav,
-  AppLoading,
-  HeadingBar,
-  CardGrid,
-  CardGridUtilBar,
-} from '../../components';
+import { Layout, MinimalNav, AppLoading, HeadingBar, CardGrid, CardGridUtilBar } from '../../components';
 import { useQueryCollections } from '../../query-fns';
-import {
-  MemoizedTokenCardContextProvider,
-  MemoizedBannerContextProvider,
-} from '../../contexts';
+import { MemoizedTokenCardContextProvider, MemoizedBannerContextProvider } from '../../contexts';
 import { StatTileProps } from '../../components/StatTile';
 
 function PodLandingPage() {
@@ -47,10 +37,7 @@ function PodLandingPage() {
     ];
   }
 
-  const canRenderContent = React.useMemo(
-    () => !isLoading && !isError && data,
-    [isLoading, isError, data]
-  );
+  const canRenderContent = React.useMemo(() => !isLoading && !isError && data, [isLoading, isError, data]);
 
   return (
     <Layout>

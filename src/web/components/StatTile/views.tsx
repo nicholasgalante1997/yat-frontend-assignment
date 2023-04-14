@@ -3,11 +3,7 @@ import styled from 'styled-components';
 export const StatTileShell = styled.div`
   height: 91px;
   width: 110px;
-  background: radial-gradient(
-      113.75% 307.5% at 36.25% 32.5%,
-      rgba(29, 27, 43, 0.4) 0%,
-      rgba(9, 7, 25, 0.4) 100%
-    )
+  background: radial-gradient(113.75% 307.5% at 36.25% 32.5%, rgba(29, 27, 43, 0.4) 0%, rgba(9, 7, 25, 0.4) 100%)
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   box-shadow: 0px 10.8px 52.8px rgba(82, 61, 241, 0.05);
   border-radius: 16px;
