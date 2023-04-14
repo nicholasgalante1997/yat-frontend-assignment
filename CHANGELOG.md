@@ -9,6 +9,11 @@
 - Set Up Collection title & Subtext
 - Set up Stat Tiles
 - Set up loading skeleton for app (needs tweaking)
+- Desktop UI done
+- Added banner context for displaying banner messages
+- Added token provider context after initial data load
+- Scaffolded filter & search & sort into provider fn
+- Desktop site done
 
 ## 1.0.1  
 
