@@ -1,5 +1,9 @@
 # Changes by SemVer
 
+## 1.0.5
+
+- General Bug Fixes and Polishing
+
 ## 1.0.4
 
 - Migrated off create-react-app
@@ -15,7 +19,6 @@
 - Set up a pageHandler for '/' route
 - Migrated react-query to an ssr node implementation (I know were on v3 but the docs point to v4 for some reason) [docs](https://tanstack.com/query/v4/docs/react/guides/ssr#server)
 - Migrated MSW to a node implementation
-- 
 
 ## 1.0.3  
 
