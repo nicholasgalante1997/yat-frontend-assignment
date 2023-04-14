@@ -5,7 +5,7 @@
 - ~~modularize query fn calls~~
 
 - ~~add styled-components~~
-- component scaffolding
+- ~~component scaffolding~~
   - ~~page layout~~
   - ~~fixed nav~~
   - ~~heading (name, desc, stats, image)~~

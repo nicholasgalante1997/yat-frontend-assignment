@@ -8,7 +8,6 @@ export const HeadingBarParentContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 48px;
-  padding-left: 64px;
 
   @media screen and (min-width: 596px) and (max-width: 900px) {
     display: flex;

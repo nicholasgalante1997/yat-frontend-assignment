@@ -102,7 +102,7 @@ export const MemoizedTokenCardContextProvider = memo(function ({
           return !!owner.twitter;
         }
         if (hasSearchCriteria) {
-          return (asset.id.toString().includes(searchTerm)  || owner.twitter.includes(searchTerm) || collection.name.includes(searchTerm));
+          return (asset.id.toString().includes(searchTerm)  || (owner.twitter && owner.twitter.includes(searchTerm)) || collection.name.includes(searchTerm));
         }
         return true;
       });

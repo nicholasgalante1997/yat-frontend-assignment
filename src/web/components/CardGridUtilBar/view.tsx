@@ -6,7 +6,7 @@ export const CardGridUtilBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px;
-  margin-top: 36px;
+  margin-top: 64px;
   margin-bottom: 36px;
 
   @media screen and (min-width: 596px) and (max-width: 900px) {
