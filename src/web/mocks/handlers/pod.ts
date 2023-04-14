@@ -132,7 +132,7 @@ export const pod = rest.get(
       ctx.status(200),
       ctx.json({
         pod: {
-          name: 'Test Pod',
+          name: 'A1 Lunar Pod Bravo',
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
           stats: {

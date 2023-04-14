@@ -9,9 +9,12 @@ export async function fetchCollection(): Promise<Pod | null> {
   try {
     logger.log(OP_BEGIN_LOGLINE);
 
-    const { data, status, statusText } = await net.get<{ pod: Pod }>(
-      'http://mock-server/collection/test'
-    );
+    const isBrowser = typeof window !== 'undefined';
+    const url = isBrowser
+      ? 'http://localhost:3000/api/proxy/msw'
+      : 'http://mock-server/collection/test';
+
+    const { data, status, statusText } = await net.get<{ pod: Pod }>(url);
 
     if (status < 200 || status > 299) {
       logger.error(

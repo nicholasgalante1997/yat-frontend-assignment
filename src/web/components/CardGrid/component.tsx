@@ -8,7 +8,7 @@ export const CardGrid = React.memo(function () {
   return (
     <CardGridFlexContainer>
       {tokens.map((cardProps) => (
-        <TokenCard {...cardProps} />
+        <TokenCard {...cardProps} key={cardProps.asset.id} />
       ))}
     </CardGridFlexContainer>
   );
