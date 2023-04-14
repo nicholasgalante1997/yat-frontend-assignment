@@ -3,6 +3,7 @@
 ## 1.0.7
 
 - Updated readme
+- locked node version by adding package.json#engine field and .nvmrc
 
 ## 1.0.6  
 
