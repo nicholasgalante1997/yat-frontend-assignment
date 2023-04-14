@@ -23,7 +23,7 @@ export const SortToggle = memo(function () {
       <SortTab
         active={sortDir === 'descending'}
         onKeyDown={function (kE) {
-          (kE.key === 'Enter' || kE.key === 'Return') && toggleAscending();
+          (kE.key === 'Enter' || kE.key === 'Return') && toggleDescending();
         }}
         onClick={toggleDescending}
         tabIndex={1}
