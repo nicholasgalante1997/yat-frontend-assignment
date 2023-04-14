@@ -7,10 +7,6 @@ import { StatTileProps } from '../../components/StatTile';
 function PodLandingPage() {
   const { data, isLoading, isError, error } = useQueryCollections();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   /**
    * attr names returned from the MSW dont match one to one with visual UI text, so we map stats data to UI tiles here
    * @returns
@@ -38,6 +34,25 @@ function PodLandingPage() {
   }
 
   const canRenderContent = React.useMemo(() => !isLoading && !isError && data, [isLoading, isError, data]);
+
+  if (error || isError) {
+    return (
+      <Layout>
+        <div
+          style={{
+            height: '100vh',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <p style={{ fontFamily: 'Alliance No 1.' }}>500 Server Error</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

@@ -4,7 +4,7 @@
  * This function accepts two arguments: A React Component that you wish to dehydrate into
  * 'static' markup, and an options object that assists in driving the Component configuration.
  * The function loads a public template html file - html.production.template, and then
- * embeds the result of dehydrating the component into a mounting element within the
+ * embeds the result of dehydrating the component into a mounting element within the loaded html template
  */
 
 import React from 'react';

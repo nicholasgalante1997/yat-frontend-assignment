@@ -6,10 +6,10 @@ const ICONS = ['home', 'user', 'smile', 'diamond'] as const;
 
 export const MinimalNav = React.memo(function () {
   return (
-    <MinimalNavParentContainer>
-      <MinimalNavChildContainer>
+    <MinimalNavParentContainer tabIndex={1}>
+      <MinimalNavChildContainer tabIndex={1}>
         {ICONS.map((type) => (
-          <MinimalNavButton>
+          <MinimalNavButton tabIndex={1}>
             <Icon type={type} />
           </MinimalNavButton>
         ))}

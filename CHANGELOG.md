@@ -1,5 +1,13 @@
 # Changes by SemVer
 
+## 1.0.7
+
+- Updated readme
+
+## 1.0.6  
+
+- Very light accessibility layer/polish
+
 ## 1.0.5
 
 - General Bug Fixes and Polishing

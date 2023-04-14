@@ -20,9 +20,15 @@ export const Input = memo(function (props: InputProps) {
     setInputState(props.value);
   }, [props.value]);
   return (
-    <StyledInputContainer>
+    <StyledInputContainer tabIndex={1}>
       {props.withSearchIcon && <SearchIcon type="search" />}
-      <StyledInput value={inputState} onChange={onChange} placeholder={props.placeholder} />
+      <StyledInput
+        aria-label="search"
+        tabIndex={1}
+        value={inputState}
+        onChange={onChange}
+        placeholder={props.placeholder}
+      />
     </StyledInputContainer>
   );
 });

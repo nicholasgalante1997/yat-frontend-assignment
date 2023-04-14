@@ -29,18 +29,23 @@ export const CardGridUtilBar = React.memo(function (props: CardGridUtilBarProps)
   function toggleOtherFiltersPrecursor() {
     dispatchBanner({
       background: '#523DF1',
-      bannerText: 'I\'m sure this feature\'s coming soon!',
+      bannerText: "I'm sure this feature's coming soon!",
       id: 'sample-banner-context',
     });
   }
   return (
-    <CardGridUtilBarWrapper>
-      <CardGridRow>
-        <CollectionTitle>{name}</CollectionTitle>
-        <Input withSearchIcon value={searchTerm} placeholder="'8976' or 'TokenStars'..." suppliedOnChange={mutateSearchTerm} />
+    <CardGridUtilBarWrapper tabIndex={1}>
+      <CardGridRow tabIndex={1}>
+        <CollectionTitle tabIndex={1}>{name}</CollectionTitle>
+        <Input
+          withSearchIcon
+          value={searchTerm}
+          placeholder="'8976' or 'TokenStars'..."
+          suppliedOnChange={mutateSearchTerm}
+        />
       </CardGridRow>
-      <CardGridRow>
-        <Grouping>
+      <CardGridRow tabIndex={1}>
+        <Grouping tabIndex={1}>
           <SortToggle />
           <Badge active={sortBy === 'recency'} onClick={() => mutateSortBy('recency')}>
             Recency
@@ -49,7 +54,7 @@ export const CardGridUtilBar = React.memo(function (props: CardGridUtilBarProps)
             Price
           </Badge>
         </Grouping>
-        <Grouping>
+        <Grouping tabIndex={1}>
           <Badge active={!!filterOnOwnedTokens} onClick={() => mutateOwnedTokensOnly(true)}>
             Owned
           </Badge>

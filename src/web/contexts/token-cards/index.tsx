@@ -96,13 +96,22 @@ export const MemoizedTokenCardContextProvider = memo(function ({
         const hasSearchCriteria = !!searchTerm && searchTerm !== '';
 
         if (hasOwnedTokensFilter && hasSearchCriteria) {
-          return !!owner.twitter && (asset.id.toString().includes(searchTerm) || owner.twitter.includes(searchTerm) || collection.name.includes(searchTerm));
+          return (
+            !!owner.twitter &&
+            (asset.id.toString().includes(searchTerm) ||
+              owner.twitter.includes(searchTerm) ||
+              collection.name.includes(searchTerm))
+          );
         }
         if (hasOwnedTokensFilter) {
           return !!owner.twitter;
         }
         if (hasSearchCriteria) {
-          return (asset.id.toString().includes(searchTerm)  || (owner.twitter && owner.twitter.includes(searchTerm)) || collection.name.includes(searchTerm));
+          return (
+            asset.id.toString().includes(searchTerm) ||
+            (owner.twitter && owner.twitter.includes(searchTerm)) ||
+            collection.name.includes(searchTerm)
+          );
         }
         return true;
       });
@@ -122,9 +131,9 @@ export const MemoizedTokenCardContextProvider = memo(function ({
       return sortBy === 'price'
         ? comparator(a.transaction.amount, b.transaction.amount)
         : comparator(
-          parseInt(new Date(a.transaction.date).toUTCString()),
-          parseInt(new Date(b.transaction.date).toUTCString())
-        );
+            parseInt(new Date(a.transaction.date).toUTCString()),
+            parseInt(new Date(b.transaction.date).toUTCString())
+          );
     }
 
     return sortDir === 'ascending'

@@ -58,6 +58,12 @@ module.exports = {
         path: path.resolve(process.cwd(), 'build', 'static'),
         filename: '[name].bundle.js'
     },
+    stats: {
+      chunks: true,
+    },
+    optimization: {
+      mangleExports: 'size'
+    },
     module: {
         rules: [
             {

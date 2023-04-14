@@ -18,15 +18,17 @@ type HeadingBarProps = {
 
 export const HeadingBar = React.memo(function ({ description, title, statTiles }: HeadingBarProps) {
   return (
-    <HeadingBarParentContainer>
-      <HeadingBarImageTitleContainer>
-        <HeadingBarImage src="collection_hero.png" alt="A cartoon woman singing" />
-        <HeadingTitleContainer>
-          <Title>{title}</Title>
-          <Text>{description}</Text>
+    <HeadingBarParentContainer tabIndex={1}>
+      <HeadingBarImageTitleContainer tabIndex={1}>
+        <HeadingBarImage src="collection_hero.png" alt="A cartoon woman singing" tabIndex={1} />
+        <HeadingTitleContainer tabIndex={1}>
+          <Title role="heading" aria-level={2} tabIndex={1}>
+            {title}
+          </Title>
+          <Text role="note">{description}</Text>
         </HeadingTitleContainer>
       </HeadingBarImageTitleContainer>
-      <HeadingBarStatTileContainer>
+      <HeadingBarStatTileContainer tabIndex={1}>
         {statTiles.map((statTileProps) => (
           <StatTile {...statTileProps} />
         ))}

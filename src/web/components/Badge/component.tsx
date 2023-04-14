@@ -11,7 +11,13 @@ export type BadgeProps = {
 
 export const Badge = memo(function (props: BadgeProps) {
   return (
-    <StyledBadge tabIndex={1} {...props}>
+    <StyledBadge
+      tabIndex={1}
+      onKeyDown={function (kE) {
+        (kE.key === 'Enter' || 'Return') && props.onClick && props.onClick();
+      }}
+      {...props}
+    >
       {props.children}
     </StyledBadge>
   );

@@ -6,7 +6,7 @@ import { useGetVisibleTokensCtx } from '../../contexts';
 export const CardGrid = React.memo(function () {
   const tokens = useGetVisibleTokensCtx();
   return (
-    <CardGridFlexContainer>
+    <CardGridFlexContainer tabIndex={1}>
       {tokens.map((cardProps) => (
         <TokenCard {...cardProps} key={JSON.stringify(cardProps)} />
       ))}

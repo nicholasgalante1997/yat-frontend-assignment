@@ -10,10 +10,24 @@ export const SortToggle = memo(function () {
   const toggleDescending = () => mutateSort('descending');
   return (
     <SortToggleContainer tabIndex={1}>
-      <SortTab active={sortDir === 'ascending'} onClick={toggleAscending} tabIndex={1}>
+      <SortTab
+        active={sortDir === 'ascending'}
+        onKeyDown={function (kE) {
+          (kE.key === 'Enter' || kE.key === 'Return') && toggleAscending();
+        }}
+        onClick={toggleAscending}
+        tabIndex={1}
+      >
         <Icon type="arrow-up" />
       </SortTab>
-      <SortTab active={sortDir === 'descending'} onClick={toggleDescending} tabIndex={1}>
+      <SortTab
+        active={sortDir === 'descending'}
+        onKeyDown={function (kE) {
+          (kE.key === 'Enter' || kE.key === 'Return') && toggleAscending();
+        }}
+        onClick={toggleDescending}
+        tabIndex={1}
+      >
         <Icon type="arrow-down" />
       </SortTab>
     </SortToggleContainer>

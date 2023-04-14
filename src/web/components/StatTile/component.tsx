@@ -8,9 +8,11 @@ export type StatTileProps = {
 
 export const StatTile = React.memo(function (props: StatTileProps) {
   return (
-    <StatTileShell>
-      <StatTileHeading>{props.title}</StatTileHeading>
-      <StatTileValue>{props.value}</StatTileValue>
+    <StatTileShell tabIndex={1}>
+      <StatTileHeading tabIndex={1} role="heading" aria-value={4}>
+        {props.title}
+      </StatTileHeading>
+      <StatTileValue tabIndex={1}>{props.value}</StatTileValue>
     </StatTileShell>
   );
 });
