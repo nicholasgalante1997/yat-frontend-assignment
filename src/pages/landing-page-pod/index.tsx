@@ -5,8 +5,13 @@ import {
   AppLoading,
   HeadingBar,
   CardGrid,
+  CardGridUtilBar,
 } from '../../components';
 import { useQueryCollections } from '../../query-fns';
+import {
+  MemoizedTokenCardContextProvider,
+  MemoizedBannerContextProvider,
+} from '../../contexts';
 import { StatTileProps } from '../../components/StatTile';
 
 function PodLandingPage() {
@@ -49,18 +54,23 @@ function PodLandingPage() {
 
   return (
     <Layout>
-      <MinimalNav />
-      {isLoading && <AppLoading />}
-      {canRenderContent && (
-        <React.Fragment>
-          <HeadingBar
-            statTiles={getStatTilesFromPodQuery()}
-            title={data?.name ?? ''}
-            description={data?.description ?? ''}
-          />
-          <CardGrid cards={data?.tokens ?? []} />
-        </React.Fragment>
-      )}
+      <MemoizedBannerContextProvider>
+        <MinimalNav />
+        {isLoading && <AppLoading />}
+        {canRenderContent && (
+          <React.Fragment>
+            <HeadingBar
+              statTiles={getStatTilesFromPodQuery()}
+              title={data?.name ?? ''}
+              description={data?.description ?? ''}
+            />
+            <MemoizedTokenCardContextProvider tokens={data?.tokens ?? []}>
+              <CardGridUtilBar collection={{ name: data?.name ?? '' }} />
+              <CardGrid />
+            </MemoizedTokenCardContextProvider>
+          </React.Fragment>
+        )}
+      </MemoizedBannerContextProvider>
     </Layout>
   );
 }

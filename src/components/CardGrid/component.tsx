@@ -1,16 +1,13 @@
 import React from 'react';
 import { CardGridFlexContainer } from './views';
 import { TokenCard } from '../TokenCards';
-import { Token } from '../../types';
+import { useGetVisibleTokensCtx } from '../../contexts';
 
-type CardGridProps = {
-  cards: Token[];
-};
-
-export const CardGrid = React.memo(function (props: CardGridProps) {
+export const CardGrid = React.memo(function () {
+  const tokens = useGetVisibleTokensCtx();
   return (
     <CardGridFlexContainer>
-      {props.cards.map((cardProps) => (
+      {tokens.map((cardProps) => (
         <TokenCard {...cardProps} />
       ))}
     </CardGridFlexContainer>

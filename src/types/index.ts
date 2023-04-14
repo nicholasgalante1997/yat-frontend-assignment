@@ -20,7 +20,7 @@ export type Token = {
 };
 
 type ImageAsset = {
-  id: string;
+  id: number;
   url: string;
 };
 type CollectionMeta = {

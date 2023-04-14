@@ -15,17 +15,6 @@ export const CardWrapper = styled.div`
   border-radius: 10px;
   align-self: stretch;
   flex-grow: 1;
-  border-image: linear-gradient(
-    #523df1 100%,
-    #8e72ff 10%,
-    #db8fff 10%,
-    #fa06ff 100%,
-    #db8fff 10%,
-    #8e72ff 10%,
-    #523df1 100%
-  );
-  border-width: 1px;
-  border-style: solid;
 `;
 
 export const CardWrapperInnerContent = styled.div`

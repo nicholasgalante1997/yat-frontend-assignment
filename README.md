@@ -1,3 +1,28 @@
+# Nick Galante
+
+## Addendum  
+
+Whats up? I'm Nick. I'm going to go a little bit into what I did here, what I did not do here, and a little bit furher into why I did it or did not do it. I'll try to keep this chronological, because it may help illuminate some of my thought processes when writing code.  
+
+So you (all) had basically handed me a blank slate CRA app with a single network call (managed by react-query, which A++++, react query is awesome.) and a Figma file. I implemented a more opinionated, modularized folder structure (services, and query hooks). I installed axios (isomorphic network request util dep) because it plays nicely in both client and server runtimes and the end goal of this stream of work is to migrate off CRA and to migrate over to a custom express/http node server which will prepare the pages on the server (SSR). Im sure you're thinking, "That's pretty unnecessary for a SPA with a single view and most of that view being dyanmic, also its just a takehome demo.", well yeah that's all true. However, react-query has some pretty awesome prefetching abilities intended for node runtime use. When we prefetch our queries on a per-request basis, we introduce some extended calc time in the server handler, but we trade this off for an excessively faster load on the client, because the data is being hydrated as opposed to fetched. This is a big plus in terms of user experience even if we don't get all the awesome SEO benefits afforded with server side content-crawling.  
+
+Ok so I added axios, then I added eslint and prettier. Just feels pretty standard to offlift devX tooling like formatting and code linting to proven tools. Eslint can be pretty opinionated with certain recommended defaults but if youre willing to take the time to shut off the stupid ones, it can play pretty nice. I debated adding Husky and Lint-Staged but there's going to be max 10 commits in this package so I felt that was a waste. I created some common utils, like a logger (I debated using Pino or Winston but these logs arent going anywhere so I ultimately opted not to add a dep, did add chalk because its better to crawl server logs when theyre in color, and its so small.), and a shared axios instance to pass around for network calls in network service clients.
+
+Then I developed the component inventory to construct the page. I defaulted to using `styled-components`. There's a ton of benefits with theming (which I did really tap into here, Ill be honest) and it plays very nicely with a react prop passing pattern. It parses scss syntax and allows for some cool abstractions doing prop based mixins in JS. Its probably the best and only good css in js option. The figma was extremely well done layer by layer, so the component development was super straight forward. Tried to be reusable where appropriate with fundamental elements like Input and Icon. In component development, I typically adhere to the following file pattern, which Im sure you'll notice:
+
+```yaml
+Component:
+    - component.tsx - Contains component logic, renders views.
+    - views.tsx - Contains styled-component views to be used in larger constructs i.e. Component. Purely markup.
+    - index.ts - Manages exports
+    - component.stories.tsx - Storybook CSF file
+    - component.test.tsx - React testing lib component tests (May not get to this one because there's not a ton of exciting non unit tests to write here that wouldnt just be capturing prop passing. I swear I can write tests.)
+```
+
+Ok moving on. Got the UI layer fleshed out. Then began on some of the client based logic, i.e. the sort functionality, sort by functionality, the filter functionality, and the search functionality. I ended up opting to use react context here. Its really not an awesome pattern to have to drill a ton of common props to components, and this seemed an appropriate use case. If we didnt use some abstracted state tool, we end up having to manage a ton of extra state and logic in the card grid, and its best to keep minimalist view components abstracted a layer away from intensive logic. Essentially this context will accept the tokens from the collections query and manage updating them should we configure react-query to refetch the token data after a certain interval. It will also manage a coagulative state for filters, search terms, and 
+
+---
+
 <img src="https://api-docs.y.at/img/yat-logo-white.svg" width="25%">
 
 <div style="background: url(https://api-docs.y.at/img/yat-logo-white.svg);background-color: #090719;height:70px;background-repeat:no-repeat;background-size: 100px;background-position: center; border-radius: 10px;border: 1px solid #fff;width: 100%;margin:0; padding:0;">
