@@ -24,7 +24,7 @@ export type EmbedOptions = {
   headTags?: HeadTagConfig[];
   bundleName: string;
   props?: Record<string, any>;
-  queryConfig: {
+  queryConfig?: {
     queryClient: QueryClient;
     dehydratedState: any;
   };
@@ -41,15 +41,16 @@ export function prerender(Component: React.ComponentType<any>, options: EmbedOpt
     logger.log('retrieving html template...');
     html = fs.readFileSync(path.resolve(process.cwd(), 'html', 'prod.template.html'), { encoding: 'utf-8' });
     logger.log('Dehydrating styled-components on server...');
-    pageString = renderToString(
-      sheet.collectStyles(
-        <QueryClientProvider client={options.queryConfig.queryClient}>
+    const reactNode = options.queryConfig ? (
+      <QueryClientProvider client={options.queryConfig.queryClient}>
           <Hydrate state={options.queryConfig.dehydratedState}>
             <Component {...(options.props ? options.props : {})} />
           </Hydrate>
         </QueryClientProvider>
-      )
-    );
+    ) : (
+      <Component {...(options.props ? options.props : {})} />
+    )
+    pageString = renderToString(sheet.collectStyles(reactNode));
     const styleTags = sheet.getStyleTags();
     html = html.replace('<!-- __style_mount__ -->', styleTags);
   } catch (e: any) {
@@ -78,10 +79,14 @@ export function prerender(Component: React.ComponentType<any>, options: EmbedOpt
     html = html.replace('<!-- __data_state_mount__ -->', '');
   }
 
-  const reactQueryScriptTag = `<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(
-    options.queryConfig.dehydratedState
-  )};</script>`;
-  html = html.replace('<!-- __react_query_script_mount__ -->', reactQueryScriptTag);
+  if (options.queryConfig) {
+    const reactQueryScriptTag = `<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(
+      options.queryConfig.dehydratedState
+    )};</script>`;
+    html = html.replace('<!-- __react_query_script_mount__ -->', reactQueryScriptTag);
+  } else {
+    html = html.replace('<!-- __react_query_script_mount__ -->', '');
+  }
 
   const scriptTag = `<script src="/${options.bundleName}.bundle.js" defer></script>`;
   html = html.replace('<!-- __client_js_mount__ -->', scriptTag);
