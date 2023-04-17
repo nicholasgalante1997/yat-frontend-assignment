@@ -11,4 +11,8 @@ export const CardGridFlexContainer = styled.div`
   max-width: 1224px;
   margin-top: 48px;
   margin-left: 36px;
+
+  @media screen and (min-width: 1441px) {
+    max-width: 1440px;
+  }
 `;

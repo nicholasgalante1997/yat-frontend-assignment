@@ -9,7 +9,7 @@ export type StatTileProps = {
 export const StatTile = React.memo(function (props: StatTileProps) {
   return (
     <StatTileShell tabIndex={1}>
-      <StatTileHeading tabIndex={1} role="heading" aria-value={4}>
+      <StatTileHeading tabIndex={1} role="heading" aria-value={6}>
         {props.title}
       </StatTileHeading>
       <StatTileValue tabIndex={1}>{props.value}</StatTileValue>

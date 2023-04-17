@@ -12,7 +12,8 @@ const FixedBannerBar = styled.div`
 
 const Banner = styled.div<{ background: string }>`
   height: 50px;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   border-radius: 4px;
   background: ${(props) => props.background};
   font-family: 'Alliance No 1.';
@@ -28,6 +29,10 @@ const Banner = styled.div<{ background: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1024) {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
 `;
 
 type BannerProps = { bannerText: string; background: string; id: string };
